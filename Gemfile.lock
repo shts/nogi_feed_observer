@@ -42,6 +42,7 @@ GEM
     parse-ruby-client (0.3.0)
       faraday
       faraday_middleware
+    pg (0.18.1)
     sax-machine (1.3.0)
     sqlite3 (1.3.10)
     thor (0.19.1)
@@ -58,4 +59,5 @@ DEPENDENCIES
   feedjira
   foreman
   parse-ruby-client
+  pg
   sqlite3
