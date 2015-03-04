@@ -6,10 +6,14 @@ require 'eventmachine'
 Parse.init :application_id => ENV['PARSE_APP_ID'],
            :api_key        => ENV['PARSE_API_KEY']
 
+=begin
 ActiveRecord::Base.establish_connection(
   "adapter" => "sqlite3",
   "database" => "./entry.db"
 )
+=end
+
+ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'sqlite3://localhost/entry.db')
 
 class Entry < ActiveRecord::Base
 end
@@ -43,7 +47,7 @@ def init
 end
 
 EM.run do
-  
+
   if Entry.count == 0
     p "database initialize"
     init
