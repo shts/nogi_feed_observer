@@ -6,6 +6,7 @@ gem "feedjira"
 gem 'parse-ruby-client'
 gem 'eventmachine'
 #gem 'sqlite3'
+gem 'rake'
 
 group :development do
   gem 'sqlite3'
