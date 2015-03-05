@@ -9,11 +9,13 @@ task :migrate => :environment do
 end
 
 task :environment do
+
   ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'sqlite3://localhost/entry.db')
 
   class Entry < ActiveRecord::Base
   end
 
+  FEED_URL="http://blog.nogizaka46.com/atom.xml"
   feed = Feedjira::Feed.fetch_and_parse(FEED_URL)
   feed.entries.each do |entry|
     entry = Entry.new(:tag => entry.id,
