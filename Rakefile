@@ -1,27 +1,15 @@
 require 'active_record'
 require "feedjira"
 
-task :default => :migrate
-
-desc "Migrate database"
-task :migrate => :environment do
-  ActiveRecord::Migrator.migrate('db/migrate', ENV["VERSION"] ? ENV["VERSION"].to_i : nil )
-end
-
-task :environment do
+namespace :db do
 
   ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'sqlite3://localhost/entry.db')
 
-  class Entry < ActiveRecord::Base
-  end
+  ActiveRecord::Base.logger = Logger.new(STDOUT)
 
-  FEED_URL="http://blog.nogizaka46.com/atom.xml"
-  feed = Feedjira::Feed.fetch_and_parse(FEED_URL)
-  feed.entries.each do |entry|
-    entry = Entry.new(:tag => entry.id,
-              :published => entry.published,
-              :updated => entry.updated)
-    entry.save
+  desc "Migrate database"
+  task :migrate do
+    ActiveRecord::Migrator.migrate('db/migrate', ENV["VERSION"] ? ENV["VERSION"].to_i : nil )
   end
 
 end
