@@ -7,6 +7,9 @@ gem 'parse-ruby-client'
 gem 'eventmachine'
 #gem 'sqlite3'
 gem 'rake'
+#for db migrate
+gem 'sinatra'
+gem 'sinatra-activerecord'
 
 group :development do
   gem 'sqlite3'

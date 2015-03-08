@@ -1,4 +1,4 @@
-class CreateTitles < ActiveRecord::Migration
+class CreateEntries < ActiveRecord::Migration
   def self.up
     create_table :entries do |t|
       t.string :tag
@@ -10,5 +10,4 @@ class CreateTitles < ActiveRecord::Migration
   def self.down
     drop_table :entries
   end
-
 end

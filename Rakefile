@@ -1,6 +1,9 @@
-require 'active_record'
-require "feedjira"
+#require 'active_record'
+#require "feedjira"
+require 'sinatra/activerecord'
+require 'sinatra/activerecord/rake'
 
+=begin
 namespace :db do
 
   ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'sqlite3://localhost/entry.db')
@@ -13,3 +16,4 @@ namespace :db do
   end
 
 end
+=end
