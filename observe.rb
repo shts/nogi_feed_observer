@@ -26,9 +26,11 @@ def push_notification(url) # must String
   p push.save
 end
 
-def push_json(url)
+def push_json(url, title, author)
   data = { :action=> "android.shts.jp.nogifeed.UPDATE_STATUS",
-           :url => url.to_s }
+           :url => url.to_s,
+           :title => title,
+           :author => author }
   push = Parse::Push.new(data)
   push.where = { :deviceType => "android" }
   p push.save
@@ -64,7 +66,7 @@ EM.run do
         e.published = entry.published
         e.updated = entry.updated
         #push notifiction message
-        push_json(entry.url)
+        push_json(entry.url, entry.title, entry.author)
       end
     end
   end
