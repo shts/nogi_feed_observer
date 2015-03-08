@@ -9,7 +9,7 @@ namespace :db do
 
   desc "Migrate database"
   task :migrate do
-    ActiveRecord::Migrator.migrate('db/migrate', ENV["VERSION"] ? ENV["VERSION"].to_i : nil )
+    ActiveRecord::Migrator.migrate('db/migrate', ENV['DATABASE_VERSION'] ? ENV['DATABASE_VERSION'].to_i : nil )
   end
 
 end
