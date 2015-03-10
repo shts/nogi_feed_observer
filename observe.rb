@@ -28,9 +28,9 @@ end
 
 def push_json(url, title, author)
   data = { :action=> "android.shts.jp.nogifeed.UPDATE_STATUS",
-           :url => url.to_s,
-           :title => title,
-           :author => author }
+           :_url => url.to_s,
+           :_title => title.to_s,
+           :_author => author.to_s }
   push = Parse::Push.new(data)
   push.where = { :deviceType => "android" }
   p push.save
